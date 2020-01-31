@@ -1,6 +1,7 @@
 from tkinter import *
+# import tkinter
 import sqlite3
-import random
+from random import randint
 
 # Соединение с базой данных слов.
 conn = sqlite3.connect('flashcards.db')
@@ -18,7 +19,7 @@ def new_word():
 		
 		#Выбор случайного id слова.
 		global id_rand
-		id_rand = random.randint(1, id_max[0])
+		id_rand = randint(1, id_max[0])
 		cursor.execute('SELECT COUNT(*) FROM minilex WHERE score < 2')
 		words_remain = cursor.fetchone()
 		cursor.execute('SELECT * FROM minilex WHERE score < 2 and id = ?', (id_rand,))
